@@ -5,6 +5,10 @@ Simple Utilities in Go
 
 Just a general collection of utilities.
 
+## Status
+
+[![Go Tests](https://github.com/sam-caldwell/utilities/actions/workflows/go-tests.yaml/badge.svg)](https://github.com/sam-caldwell/simpleSet/actions/workflows/go-tests.yaml)
+
 ## Usage
 
 ### Installation
