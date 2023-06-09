@@ -22,8 +22,9 @@ jobs:
       - name: Determine current tag
         id: current_tag
         run: |
-          if git describe --exact-match --tags $(git log -n1 --pretty='%h'); then
-            echo "::set-output name=tag::$(git describe --exact-match --tags $(git log -n1 --pretty='%h'))"
+          
+          if git describe --tags $(git log -n10 --pretty='%h') | head -n1 | awk -F\- '{print $1}'; then
+            echo "::set-output name=tag::$(git describe --tags $(git log -n10 --pretty='%h') | head -n1 | awk -F\- '{print $1}')"
           else
             echo "::set-output name=tag::v0.0.0"
           fi
@@ -38,8 +39,8 @@ jobs:
           new_version="v${major}.${minor}.$((${patch}+1))"
           echo "::set-output name=version::${new_version}"
 
-      - name: Create and push tag
-        if: ${{ steps.current_tag.outputs.tag != steps.incremented_version.outputs.version }}
-        run: |
-          git tag ${{ steps.incremented_version.outputs.version }}
-          git push origin ${{ steps.incremented_version.outputs.version }}
+#      - name: Create and push tag
+#        if: ${{ steps.current_tag.outputs.tag != steps.incremented_version.outputs.version }}
+#        run: |
+#          git tag ${{ steps.incremented_version.outputs.version }}
+#          git push origin ${{ steps.incremented_version.outputs.version }}
