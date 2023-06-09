@@ -39,8 +39,8 @@ jobs:
           new_version="v${major}.${minor}.$((${patch}+1))"
           echo "::set-output name=version::${new_version}"
 
-#      - name: Create and push tag
-#        if: ${{ steps.current_tag.outputs.tag != steps.incremented_version.outputs.version }}
-#        run: |
-#          git tag ${{ steps.incremented_version.outputs.version }}
+      - name: Create and push tag
+        if: ${{ steps.current_tag.outputs.tag != steps.incremented_version.outputs.version }}
+        run: |
+          git tag ${{ steps.incremented_version.outputs.version }}
 #          git push origin ${{ steps.incremented_version.outputs.version }}
