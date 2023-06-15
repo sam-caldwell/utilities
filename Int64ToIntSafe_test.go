@@ -19,7 +19,7 @@ func TestInt64ToIntSafe(t *testing.T) {
 
 	// Iterate over test cases
 	for _, tc := range testCases {
-		result, err := int64ToIntSafe(tc.input)
+		result, err := Int64ToIntSafe(tc.input)
 
 		if tc.isError {
 			// Expected error
